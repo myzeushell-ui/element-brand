@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ЭЛЕМЕНТ — Энергия для развития бизнеса · Вариант 2 «Кинетическое пламя»</title>
+<meta name="description" content="Газопоршневые установки собственного производства. Премиум-лендинг, светлая тема, живое пламя.">
+<link rel="icon" type="image/svg+xml" href="assets/flame.svg">
+<link rel="stylesheet" href="assets/element-light.css">
+<style>
+  .hero-2{background:radial-gradient(900px 480px at 20% 10%,#FFF4F0,transparent 55%),
+    linear-gradient(180deg,#FFFFFF,#F6F7F9)}
+  .flamestage{position:absolute;inset:0;border-radius:var(--r-lg);overflow:hidden;
+    background:radial-gradient(120% 130% at 50% 110%,#241412 0%,#120B0A 45%,#0A0708 100%);
+    border:1px solid #20242B;box-shadow:var(--shadow-lg)}
+  .flamestage canvas{position:absolute;inset:0;width:100%;height:100%}
+  .flamestage .cap{position:absolute;left:0;right:0;bottom:22px;text-align:center;z-index:3;
+    color:#fff;font-weight:800;letter-spacing:.34em;font-size:14px;text-transform:uppercase}
+  .flamestage .cap small{display:block;letter-spacing:.04em;text-transform:none;font-weight:500;
+    font-size:12.5px;color:#C8907F;margin-top:6px}
+  .flamestage .tl{position:absolute;left:18px;top:18px;z-index:3;color:#FFCBB8;font-size:12px;
+    letter-spacing:.18em;text-transform:uppercase;font-weight:700;display:flex;align-items:center;gap:8px}
+  .flamestage .tl::before{content:"";width:8px;height:8px;border-radius:50%;background:#FF6A3D;
+    box-shadow:0 0 12px 3px rgba(255,106,61,.7)}
+</style>
+</head>
+<body>
+<div data-nav></div>
+
+<section class="hero hero-2">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="reveal in">
+        <span class="eyebrow">Энергия из газа · собственное производство</span>
+        <h1>Энергия <span class="accent">для развития</span> бизнеса</h1>
+        <p class="lede">Газопоршневые установки для майнинга, промышленных предприятий,
+          котельных и аквакультуры. Превращаем газ в стабильную мощность — там, где
+          она нужна вашему бизнесу.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#contact">Получить коммерческое предложение</a>
+          <a class="btn btn-ghost" href="#products">Смотреть продукцию</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="flamestage">
+          <span class="tl">Живая энергия</span>
+          <canvas id="flame"></canvas>
+          <div class="cap">ЭЛЕМЕНТ<small>Каждый киловатт рождается из управляемого огня</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<main data-sections></main>
+<div data-footer></div>
+
+<script>window.ELEMENT_VARIANT=2;</script>
+<script>
+(function(){
+  var cv=document.getElementById('flame'),ctx=cv.getContext('2d'),DPR=Math.min(devicePixelRatio||1,2);
+  var W,H;
+  function resize(){var b=cv.getBoundingClientRect();W=b.width;H=b.height;cv.width=W*DPR;cv.height=H*DPR;ctx.setTransform(DPR,0,0,DPR,0,0);}
+  resize();addEventListener('resize',resize);
+
+  var P=[],MAX=460,reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  function spawn(){
+    var baseX=W*0.5, baseY=H*0.92, spread=Math.min(W,H)*0.13;
+    P.push({
+      x:baseX+(Math.random()-0.5)*spread,
+      y:baseY+(Math.random()*10),
+      vx:(Math.random()-0.5)*0.5,
+      vy:-(1.6+Math.random()*2.2)*(Math.min(W,H)/420),
+      life:0, max:60+Math.random()*55,
+      r:(Math.min(W,H)/22)*(0.6+Math.random()*0.9)
+    });
+  }
+  function tint(t){ // t:0 hot core -> 1 cool tip
+    if(t<0.18) return [255,248,225];
+    if(t<0.45) return [255,196,92];
+    if(t<0.72) return [255,108,46];
+    return [206,38,34];
+  }
+  var t0=0;
+  function frame(ts){
+    requestAnimationFrame(frame);
+    var dt=Math.min(2,(ts-t0)/16.7||1);t0=ts;
+    ctx.globalCompositeOperation='source-over';
+    ctx.fillStyle='rgba(10,7,8,0.22)';ctx.fillRect(0,0,W,H);
+    var rate=reduce?6:16;
+    for(var i=0;i<rate && P.length<MAX;i++) spawn();
+    ctx.globalCompositeOperation='lighter';
+    var sway=Math.sin(ts/700)*0.25;
+    for(var j=P.length-1;j>=0;j--){
+      var p=P[j];p.life+=dt;
+      var k=p.life/p.max;
+      if(k>=1){P.splice(j,1);continue;}
+      p.x+=p.vx*dt + sway*(1-k);
+      p.y+=p.vy*dt;
+      p.vy*=0.992; p.vx+=(Math.random()-0.5)*0.06;
+      var rad=p.r*(1-k*0.65), a=(1-k)*(1-k)*0.55, c=tint(k);
+      var grd=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,rad);
+      grd.addColorStop(0,'rgba('+c[0]+','+c[1]+','+c[2]+','+a+')');
+      grd.addColorStop(1,'rgba('+c[0]+','+c[1]+','+c[2]+',0)');
+      ctx.fillStyle=grd;ctx.beginPath();ctx.arc(p.x,p.y,rad,0,7);ctx.fill();
+    }
+    // base glow
+    var bg=ctx.createRadialGradient(W/2,H*0.95,0,W/2,H*0.95,Math.min(W,H)*0.4);
+    bg.addColorStop(0,'rgba(255,120,60,0.18)');bg.addColorStop(1,'rgba(255,120,60,0)');
+    ctx.fillStyle=bg;ctx.fillRect(0,0,W,H);
+  }
+  requestAnimationFrame(frame);
+})();
+</script>
+<script src="assets/sections.js"></script>
+</body>
+</html>
