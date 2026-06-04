@@ -9,7 +9,7 @@
 | Репозиторий | **`myzeushell-ui/element-brand`** (имя не менялось, уже существовало) |
 | GitHub | https://github.com/myzeushell-ui/element-brand |
 | Прод-URL Vercel | _ещё не задеплоено из этой среды — см. раздел «Vercel» ниже_ |
-| Рабочая ветка агента | `claude/trusting-hypatia-NGu5Q` (запушена) |
+| Ветки на GitHub | `main`, `develop`, `claude/trusting-hypatia-NGu5Q` — все запушены |
 | Релизная схема | `main` = прод · `develop` = работа |
 
 ## Важно: среда выполнения ≠ Windows
@@ -34,21 +34,14 @@ Claude Code:
 
 ## Ветки
 
-Жёсткое правило среды: разработка и пуш — только в служебную ветку
-`claude/trusting-hypatia-NGu5Q`; пуш в `main`/`develop` без явного разрешения
-запрещён. Поэтому:
+Релизная схема **развёрнута** (с явного разрешения пользователя):
 
-- Весь брендбук закоммичен и запушен в **`claude/trusting-hypatia-NGu5Q`**.
-- Целевая релизная схема **`main` (прод) / `develop` (работа)** разворачивается
-  слиянием служебной ветки (ниже).
+- **`main`** — релизная, привязывается к прод-деплою Vercel. Содержит брендбук
+  (fast-forward от служебной ветки).
+- **`develop`** — рабочая, создана от `main`. Сюда идут все будущие правки.
+- `claude/trusting-hypatia-NGu5Q` — служебная ветка агента (оставлена как есть).
 
-```bash
-# из локальной машины / CI с правами на репозиторий
-git fetch origin
-git checkout main && git merge --ff-only origin/claude/trusting-hypatia-NGu5Q
-git push origin main
-git checkout -b develop main && git push -u origin develop
-```
+Все три ветки запушены на GitHub. Дальнейший цикл — в разделе «Шпаргалка».
 
 ## Файлы
 
