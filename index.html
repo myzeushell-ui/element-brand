@@ -5,6 +5,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>ЭЛЕМЕНТ — Премиум-концепт сайта · 3 варианта</title>
 <meta name="description" content="Три концепции премиального лендинга ЭЛЕМЕНТ в светлой теме: живой двигатель, кинетическое пламя, поток энергии.">
+<meta property="og:title" content="ЭЛЕМЕНТ — Энергия для развития бизнеса">
+<meta property="og:description" content="Газопоршневые установки собственного производства. Премиум-лендинг ЭЛЕМЕНТ.">
+<meta property="og:image" content="assets/img/hero-dark.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="assets/img/hero-dark.png">
 <link rel="icon" type="image/svg+xml" href="assets/flame.svg">
 <link rel="stylesheet" href="assets/element-light.css">
 <style>
@@ -21,9 +26,13 @@
   .vc:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg);border-color:#DFE2E7}
   .vc .prev{height:200px;position:relative;overflow:hidden;display:grid;place-items:center}
   .vc .prev canvas{position:absolute;inset:0;width:100%;height:100%}
-  .p1{background:radial-gradient(120% 120% at 50% 25%,#fff,#E9ECF1)}
-  .p1 img{width:78%}
-  .p2{background:radial-gradient(120% 130% at 50% 110%,#241412,#0A0708)}
+  /* real Canva render on top; genset.svg placeholder + gradient as graceful fallbacks (no broken icon if PNG missing) */
+  .p1{background-color:#EDF0F4;
+    background-image:url('assets/img/hero-light.png'),url('assets/img/genset.svg'),radial-gradient(120% 120% at 50% 25%,#fff,#E9ECF1);
+    background-size:cover,62%,cover;background-position:center,center,center;background-repeat:no-repeat,no-repeat,no-repeat}
+  .p2{background-color:#0A0708;
+    background-image:url('assets/img/hero-dark.png'),radial-gradient(120% 130% at 50% 110%,#241412,#0A0708);
+    background-size:cover,cover;background-position:center,center;background-repeat:no-repeat,no-repeat}
   .p3{background:#fff}
   .vc .meta{padding:22px 24px 26px}
   .vc .n{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:999px;
@@ -49,7 +58,7 @@
 
   <div class="cards">
     <a class="vc" href="variant-1.html">
-      <div class="prev p1"><img src="assets/img/genset.svg" alt="3D-двигатель"></div>
+      <div class="prev p1" role="img" aria-label="Газопоршневая установка ЭЛЕМЕНТ"></div>
       <div class="meta"><span class="n">1</span><h3>Живой двигатель</h3>
         <div class="sub">Интерактивная 3D-модель</div>
         <p>Газопоршневая установка в светлой студии: вращается, дышит жаром,
@@ -74,9 +83,10 @@
     </a>
   </div>
 
-  <p class="note">Изображения двигателя — векторные плейсхолдеры (финальную фотосъёмку
-     ГПУ можно подставить без изменения вёрстки). Контент, цифры и структура взяты
-     из присланных макетов и адаптированы под премиум-сегмент в светлой теме.</p>
+  <p class="note">Hero-визуалы ЭЛЕМЕНТ (тёмный и светлый) подключены как
+     <code>assets/img/hero-dark.png</code> и <code>assets/img/hero-light.png</code> — при их наличии
+     показываются реальные рендеры, иначе остаётся векторный плейсхолдер (вёрстка не ломается).
+     Контент, цифры и структура взяты из присланных макетов и адаптированы под премиум-сегмент.</p>
 </div>
 
 <script>
