@@ -1,15 +1,14 @@
 # ЭЛЕМЕНТ — SEO-лендинг ГПУ 65–230 кВт
 
-Отдельный конверсионный лендинг газопоршневых установок ЭЛЕМЕНТ.
-Главное действие страницы — передать исходные данные объекта и получить
-инженерный подбор ГПУ (мини-конфигуратор в 3 шага).
+Конверсионный лендинг газопоршневых установок «ЭЛЕМЕНТ», собранный по выбранному
+светлому техническому референсу. Ведёт к заявке на расчёт/подбор под объект.
 
 ## Стек
 
 - Next.js 15 (App Router, RSC) + TypeScript
 - Tailwind CSS 3
 - Server-rendered SEO-контент, серверный endpoint приёма заявок `/api/lead`
-- Без тяжёлых UI-библиотек и лишних зависимостей
+- Без тяжёлых UI-библиотек
 
 ## Запуск
 
@@ -22,6 +21,17 @@ npm run lint                 # ESLint
 npm run typecheck            # tsc --noEmit
 ```
 
+## Структура секций (порядок как в референсе)
+
+Header → Hero → PowerRange (линейка мощностей) → SpecsStrip (характеристики) →
+Applications (где применяются) → Workflow (как мы работаем) → ContactForm → Footer.
+
+- `src/app` — layout (SEO-мета, JSON-LD, аналитика), `page.tsx`, `robots.ts`, `sitemap.ts`, `api/lead`, правовые страницы
+- `src/components/sections` — секции лендинга
+- `src/components` — Header, Cta, Reveal, Logo, InlineSvg, Analytics, JsonLd, icons
+- `src/lib` — `config` (контакты, навигация), `data` (мощности, характеристики, применения, этапы), `analytics`, `utm`, `types`
+- `public/images` — `gpu-hero.svg` (продуктовый визуал с габаритами), `gpu-unit.svg` (карточки), `gpu-blueprint.svg` (фон формы)
+
 ## Переменные окружения
 
 | Переменная | Назначение | Обязательна |
@@ -31,19 +41,18 @@ npm run typecheck            # tsc --noEmit
 | `NEXT_PUBLIC_YANDEX_METRIKA_ID` | ID Яндекс.Метрики | нет |
 | `NEXT_PUBLIC_GA_ID` | ID Google Analytics 4 | нет |
 
-## Структура
-
-- `src/app` — layout (SEO-мета, JSON-LD, аналитика), `page.tsx`, `robots.ts`, `sitemap.ts`, `api/lead`
-- `src/components/sections` — секции лендинга (Hero, UseCases, PowerRange, Economics, Capabilities, Configurator, Process, Faq, FinalCta, Footer)
-- `src/components` — Header, Cta, Reveal, StickyCta, Analytics, JsonLd, icons
-- `src/lib` — `config` (реквизиты, навигация), `data` (мощности, FAQ, шаги), `analytics`, `utm`, `types`
-- `public/images/gpu-hero.svg` — изображение установки (векторное, инлайнится в hero)
-
 ## Требует бизнес/юридического подтверждения перед публикацией
 
-- Реальное фото ГПУ (WebP/AVIF) вместо векторного hero — заменить `public/images/gpu-hero.svg` и, при желании, перевести Hero на `next/image`.
-- Production-домен (`NEXT_PUBLIC_SITE_URL`) и self-referencing canonical.
-- Растровый OG-образ 1200×630 (сейчас OG ссылается на SVG — для максимальной совместимости соцсетей нужен PNG/JPG).
-- Коммерческий телефон — если появится, добавить в `src/lib/config.ts` (`company.phone`), он подхватится в footer и JSON-LD.
-- Финальные тексты «Политики конфиденциальности» и «Согласия на обработку ПДн» — согласовать с юристом.
-- Endpoint приёма заявок: задать `LEAD_WEBHOOK_URL`; для нескольких инстансов заменить in-memory rate-limit на внешний стор (Upstash/Redis).
+1. **Реальное фото ГПУ** (PNG на прозрачном фоне) вместо векторного `gpu-hero.svg`/`gpu-unit.svg`.
+   Изображение из чата нельзя использовать как файл — передайте PNG в `public/images/`.
+2. **Реальные фотографии применений** (промышленность, нефтегаз, стройка, ЦОД, медицина)
+   вместо тонированных плиток в блоке «Где применяются».
+3. **Технические характеристики** в полосе (50 Гц, 400/230 В, 1500 об/мин, IP23, ISO 8528,
+   гарантия) — взяты из ТЗ/референса и **НЕ подтверждены** источником фактов. Сверить с
+   паспортами ГПУ; неподтверждённые убрать (формат полосы сохранится). См. `src/lib/data.ts`.
+4. **Контакты**: телефон `8 800 500-39-65`, email `info@element-power.ru`, домен
+   `element-power.ru` — из ТЗ, требуют подтверждения (`src/lib/config.ts`).
+5. **Каталог PDF**: кнопка «Скачать каталог» сейчас ведёт в форму — подключить реальный файл.
+6. **Финальные тексты** «Политики» и «Согласия на обработку ПДн» — согласовать с юристом.
+7. **Приём заявок**: задать `LEAD_WEBHOOK_URL`; для мультиинстанса заменить in-memory
+   rate-limit на внешний стор (Upstash/Redis).

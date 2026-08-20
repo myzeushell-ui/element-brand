@@ -1,10 +1,9 @@
-"use client";
-
-import { useEffect, useRef, useState, type ElementType, type ReactNode } from "react";
+import type { ElementType, ReactNode } from "react";
 
 /**
- * Мягкое появление при скролле. Уважает prefers-reduced-motion (там сразу видимо).
- * Стили самого перехода — в globals.css через [data-reveal].
+ * Контент виден всегда (без зависимости от JS/observer). Лёгкое появление —
+ * чистой CSS-анимацией на загрузке (см. globals.css .reveal), которая уважает
+ * prefers-reduced-motion и никогда не оставляет контент скрытым.
  */
 export function Reveal({
   children,
@@ -17,41 +16,10 @@ export function Reveal({
   delay?: number;
   className?: string;
 }) {
-  const ref = useRef<HTMLElement | null>(null);
-  const [revealed, setRevealed] = useState(false);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    if (
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    ) {
-      setRevealed(true);
-      return;
-    }
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            setRevealed(true);
-            io.disconnect();
-          }
-        }
-      },
-      { threshold: 0.12, rootMargin: "0px 0px -8% 0px" },
-    );
-    io.observe(el);
-    return () => io.disconnect();
-  }, []);
-
   return (
     <Tag
-      ref={ref}
-      data-reveal=""
-      data-revealed={revealed ? "true" : "false"}
-      style={delay ? { transitionDelay: `${delay}ms` } : undefined}
-      className={className}
+      className={className ? `reveal ${className}` : "reveal"}
+      style={delay ? { animationDelay: `${delay}ms` } : undefined}
     >
       {children}
     </Tag>

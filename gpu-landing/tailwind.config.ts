@@ -44,7 +44,7 @@ const config: Config = {
       fontSize: {
         "display": ["clamp(2.25rem, 1.2rem + 4.4vw, 4.5rem)", { lineHeight: "1.04", letterSpacing: "-0.02em" }],
         "h2": ["clamp(1.75rem, 1.2rem + 2.2vw, 2.75rem)", { lineHeight: "1.1", letterSpacing: "-0.015em" }],
-        "power": ["clamp(3.5rem, 2rem + 7vw, 6.5rem)", { lineHeight: "0.9", letterSpacing: "-0.03em" }],
+        "power": ["clamp(2.75rem, 1.5rem + 4.6vw, 5rem)", { lineHeight: "0.85", letterSpacing: "-0.03em" }],
       },
       boxShadow: {
         card: "0 1px 2px rgba(21,24,29,0.04), 0 8px 24px -12px rgba(21,24,29,0.12)",

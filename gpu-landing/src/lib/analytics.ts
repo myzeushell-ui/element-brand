@@ -6,9 +6,8 @@
 export type AnalyticsEvent =
   | "hero_calculation_click"
   | "engineer_contact_click"
+  | "catalog_download_click"
   | "power_selected"
-  | "configurator_started"
-  | "configurator_step_completed"
   | "lead_submit"
   | "lead_success"
   | "lead_error";

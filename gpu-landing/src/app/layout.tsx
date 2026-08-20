@@ -4,7 +4,6 @@ import "./globals.css";
 import { SITE_URL } from "@/lib/config";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/sections/Footer";
-import { StickyCta } from "@/components/StickyCta";
 import { Analytics } from "@/components/Analytics";
 import { JsonLd } from "@/components/JsonLd";
 
@@ -17,7 +16,7 @@ const manrope = Manrope({
 
 const title = "Газопоршневые установки 65–230 кВт для предприятий | ЭЛЕМЕНТ";
 const description =
-  "Газопоршневые установки ЭЛЕМЕНТ мощностью 65, 145, 210 и 230 кВт для собственной генерации электроэнергии. Подбор мощности и предварительный расчёт под параметры вашего объекта.";
+  "Газопоршневые установки «ЭЛЕМЕНТ» 65–230 кВт для автономной и резервной генерации электроэнергии. Подбор мощности, расчёт и консультация под задачи вашего объекта.";
 
 export const viewport: Viewport = {
   width: "device-width",
@@ -86,7 +85,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Header />
         <main id="main">{children}</main>
         <Footer />
-        <StickyCta />
         <JsonLd />
         <Analytics />
       </body>

@@ -78,6 +78,86 @@ export function IconPlus(props: SVGProps<SVGSVGElement>) {
   );
 }
 
+export function IconShield(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z" />
+      <path d="m9 12 2 2 4-4" />
+    </svg>
+  );
+}
+
+export function IconGear(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg {...base} {...props}>
+      <circle cx="12" cy="12" r="3.2" />
+      <path d="M12 3v2.2M12 18.8V21M21 12h-2.2M5.2 12H3M18 6l-1.6 1.6M7.6 16.4 6 18M18 18l-1.6-1.6M7.6 7.6 6 6" />
+    </svg>
+  );
+}
+
+export function IconBadge(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg {...base} {...props}>
+      <circle cx="12" cy="9" r="5.5" />
+      <path d="m9 13.5-1.5 6L12 17l4.5 2.5-1.5-6" />
+    </svg>
+  );
+}
+
+export function IconDownload(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M12 4v10m0 0 4-4m-4 4-4-4M5 19h14" />
+    </svg>
+  );
+}
+
+export function IconFactory(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M3 20h18M4 20V9l5 3.5V9l5 3.5V9l5 3.5V20" />
+      <path d="M6 6V4M6 6h.01" />
+    </svg>
+  );
+}
+
+export function IconOil(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M12 3s5 5.5 5 9.5A5 5 0 0 1 7 12.5C7 8.5 12 3 12 3z" />
+    </svg>
+  );
+}
+
+export function IconCrane(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg {...base} {...props}>
+      <path d="M5 21V5l14 2M5 5l3 3" />
+      <path d="M12 5.9V11m0 0-2 2m2-2 2 2M9 21h6" />
+    </svg>
+  );
+}
+
+export function IconServer(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg {...base} {...props}>
+      <rect x="4" y="4" width="16" height="7" rx="1.5" />
+      <rect x="4" y="13" width="16" height="7" rx="1.5" />
+      <path d="M8 7.5h.01M8 16.5h.01" />
+    </svg>
+  );
+}
+
+export function IconMedical(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg {...base} {...props}>
+      <rect x="4" y="4" width="16" height="16" rx="3" />
+      <path d="M12 8v8m-4-4h8" />
+    </svg>
+  );
+}
+
 export function IconMenu(props: SVGProps<SVGSVGElement>) {
   return (
     <svg {...base} {...props}>

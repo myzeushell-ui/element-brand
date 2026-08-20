@@ -1,25 +1,19 @@
 import { Hero } from "@/components/sections/Hero";
-import { UseCases } from "@/components/sections/UseCases";
 import { PowerRange } from "@/components/sections/PowerRange";
-import { Economics } from "@/components/sections/Economics";
-import { Capabilities } from "@/components/sections/Capabilities";
-import { Configurator } from "@/components/sections/Configurator";
-import { Process } from "@/components/sections/Process";
-import { Faq } from "@/components/sections/Faq";
-import { FinalCta } from "@/components/sections/FinalCta";
+import { SpecsStrip } from "@/components/sections/SpecsStrip";
+import { Applications } from "@/components/sections/Applications";
+import { Workflow } from "@/components/sections/Workflow";
+import { ContactForm } from "@/components/sections/ContactForm";
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <UseCases />
       <PowerRange />
-      <Economics />
-      <Capabilities />
-      <Configurator />
-      <Process />
-      <Faq />
-      <FinalCta />
+      <SpecsStrip />
+      <Applications />
+      <Workflow />
+      <ContactForm />
     </>
   );
 }
