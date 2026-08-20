@@ -52,9 +52,9 @@ export const metadata: Metadata = {
     description,
     images: [
       {
-        url: "/images/gpu-hero.svg",
-        width: 960,
-        height: 560,
+        url: "/images/genset.png",
+        width: 1448,
+        height: 1086,
         alt: "Газопоршневая установка ЭЛЕМЕНТ для собственной генерации электроэнергии",
       },
     ],
@@ -63,7 +63,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title,
     description,
-    images: ["/images/gpu-hero.svg"],
+    images: ["/images/genset.png"],
   },
   robots: {
     index: true,

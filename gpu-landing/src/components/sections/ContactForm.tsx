@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { Container } from "../ui/Container";
 import { IconCheck } from "../icons";
 import { cn } from "@/lib/cn";
@@ -80,14 +81,14 @@ export function ContactForm() {
       <Container>
         <div className="relative overflow-hidden rounded-3xl border border-line bg-white p-6 sm:p-10 lg:p-12">
           {/* Технический чертёж на фоне справа */}
-          {/* eslint-disable-next-line @next/next/no-img-element -- декоративный статичный SVG */}
-          <img
-            src="/images/gpu-blueprint.svg"
+          <Image
+            src="/images/blueprint.png"
             alt=""
             aria-hidden="true"
-            width={1040}
-            height={700}
-            className="pointer-events-none absolute -right-10 top-1/2 hidden w-[42%] max-w-[560px] -translate-y-1/2 opacity-70 xl:block"
+            width={1448}
+            height={1086}
+            sizes="30vw"
+            className="pointer-events-none absolute -right-8 top-1/2 hidden w-[38%] max-w-[520px] -translate-y-1/2 opacity-60 xl:block"
           />
 
           <div className="relative grid gap-10 lg:grid-cols-2 lg:gap-12 xl:grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)_minmax(0,0.55fr)]">

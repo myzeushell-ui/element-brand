@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Container } from "../ui/Container";
 import { Reveal } from "../Reveal";
 import { powers } from "@/lib/data";
@@ -48,13 +49,12 @@ export function PowerRange() {
                   {p.note}
                 </p>
                 <div className="mt-auto pt-5">
-                  {/* eslint-disable-next-line @next/next/no-img-element -- статичный векторный SVG, next/image не нужен */}
-                  <img
-                    src="/images/gpu-unit.svg"
+                  <Image
+                    src="/images/genset.png"
                     alt={`Газопоршневая установка ЭЛЕМЕНТ ${p.value} кВт`}
-                    width={360}
-                    height={200}
-                    loading="lazy"
+                    width={1448}
+                    height={1086}
+                    sizes="(max-width: 640px) 90vw, (max-width: 1280px) 45vw, 22vw"
                     className="h-auto w-full"
                   />
                 </div>
