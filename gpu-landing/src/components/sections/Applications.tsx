@@ -1,5 +1,6 @@
 import { Container } from "../ui/Container";
 import { Reveal } from "../Reveal";
+import { AppScene } from "../AppScene";
 import { applications } from "@/lib/data";
 import { CONTACT_ID } from "@/lib/config";
 import {
@@ -60,10 +61,9 @@ export function Applications() {
                   delay={i * 50}
                   className="flex h-full flex-col overflow-hidden rounded-xl border border-line bg-white"
                 >
-                  {/* Изобразительная плитка (единый тон). На бизнес-подтверждение: заменить реальными фото. */}
-                  <div className="relative flex aspect-[3/4] items-center justify-center bg-gradient-to-br from-[#2A3A52] to-[#101826]">
-                    <Icon width={44} height={44} className="text-white/25" />
-                    <span className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_80%_at_50%_0%,rgba(46,111,196,0.28),transparent_60%)]" />
+                  {/* Тематическая иллюстрация отрасли (оригинальная, не сток). */}
+                  <div className="relative aspect-[3/4] overflow-hidden">
+                    <AppScene name={a.icon} className="absolute inset-0 h-full w-full" />
                   </div>
                   <div className="flex items-start gap-2.5 p-4">
                     <Icon width={20} height={20} className="mt-0.5 flex-none text-accent" />
