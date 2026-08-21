@@ -80,18 +80,7 @@ export function ContactForm() {
     <section id="contact" className="scroll-mt-24 bg-paper py-20 sm:py-24">
       <Container>
         <div className="relative overflow-hidden rounded-3xl border border-line bg-white p-6 sm:p-10 lg:p-12">
-          {/* Технический чертёж на фоне справа */}
-          <Image
-            src="/images/blueprint.png"
-            alt=""
-            aria-hidden="true"
-            width={1448}
-            height={1086}
-            sizes="30vw"
-            className="pointer-events-none absolute -right-8 top-1/2 hidden w-[38%] max-w-[520px] -translate-y-1/2 opacity-60 xl:block"
-          />
-
-          <div className="relative grid gap-10 lg:grid-cols-2 lg:gap-12 xl:grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)_minmax(0,0.55fr)]">
+          <div className="relative grid items-center gap-10 lg:grid-cols-2 lg:gap-12 xl:grid-cols-[minmax(0,0.8fr)_minmax(0,1fr)_minmax(0,0.6fr)]">
             {/* Левая колонка */}
             <div>
               <h2 className="text-h2 font-extrabold leading-[1.08] text-ink">
@@ -177,6 +166,18 @@ export function ContactForm() {
                   </button>
                 </form>
               )}
+            </div>
+
+            {/* Технический чертёж установки */}
+            <div className="flex items-center justify-center lg:col-span-2 xl:col-span-1 xl:col-start-3">
+              <Image
+                src="/images/blueprint.png"
+                alt="Технический чертёж газопоршневой установки ЭЛЕМЕНТ"
+                width={1448}
+                height={1086}
+                sizes="(max-width: 1280px) 60vw, 24vw"
+                className="h-auto w-full max-w-[440px] opacity-90"
+              />
             </div>
           </div>
         </div>
