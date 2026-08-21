@@ -1,6 +1,6 @@
+import Image from "next/image";
 import { Container } from "../ui/Container";
 import { Reveal } from "../Reveal";
-import { AppScene } from "../AppScene";
 import { applications } from "@/lib/data";
 import { CONTACT_ID } from "@/lib/config";
 import {
@@ -59,11 +59,18 @@ export function Applications() {
                   as="article"
                   key={a.title}
                   delay={i * 50}
-                  className="flex h-full flex-col overflow-hidden rounded-xl border border-line bg-white"
+                  className="group flex h-full flex-col overflow-hidden rounded-xl border border-line bg-white"
                 >
-                  {/* Тематическая иллюстрация отрасли (оригинальная, не сток). */}
-                  <div className="relative aspect-[3/4] overflow-hidden">
-                    <AppScene name={a.icon} className="absolute inset-0 h-full w-full" />
+                  {/* Реальное фото отрасли (Pexels, лицензия для коммерч. использования). */}
+                  <div className="relative aspect-[3/4] overflow-hidden bg-line">
+                    <Image
+                      src={`/images/apps/${a.icon}.jpg`}
+                      alt={a.title}
+                      fill
+                      sizes="(max-width: 640px) 45vw, (max-width: 1024px) 30vw, 18vw"
+                      className="object-cover transition-transform duration-500 ease-smooth group-hover:scale-105"
+                    />
+                    <span className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/25 to-transparent" />
                   </div>
                   <div className="flex items-start gap-2.5 p-4">
                     <Icon width={20} height={20} className="mt-0.5 flex-none text-accent" />
